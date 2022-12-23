@@ -1,0 +1,339 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Projet Finale - API",
+    "description": "Voici la documentation de L'API de mon projet de fin de session"
+  },
+  "host": "localhost:3000",
+  "basePath": "/",
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/": {
+      "get": {
+        "description": "Ceci est la route par defaut",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/games/": {
+      "get": {
+        "tags": [
+          "Games"
+        ],
+        "description": "Ceci est la route qui permet de récupérer toutes les parties insérés dans la base de données",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Games"
+        ],
+        "description": "Ceci est la route qui permet d'insérer une partie dans la base de données",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "example": "Partie 1"
+                },
+                "description": {
+                  "example": "Cette partie est génial"
+                },
+                "number_of_round_played": {
+                  "example": "4"
+                },
+                "time_per_round_played": {
+                  "example": [2,2,4,1]
+                },
+                "created_date": {
+                  "example": "2022-12-09"
+                },
+                "chosen_map": {
+                  "example": "Split"
+                },
+                "chosen_game_mode": {
+                  "example": "FFA"
+                },
+                "is_day": {
+                  "example": "true"
+                },
+                "elapsed_time": {
+                  "example": "13"
+                },
+                "players": {
+                  "example": [
+                    {
+                      "name": "Joueur 1",
+                      "class": "Classe 1"
+                    },
+                    {
+                      "name": "Joueur 2",
+                      "class": "Classe 2"
+                    },
+                    {
+                      "name": "Joueur 3",
+                      "class": "Classe 3"
+                    },
+                    {
+                      "name": "Joueur 4",
+                      "class": "Classe 4"
+                    }]
+                },
+                "joinable": {
+                  "example": "true"
+                },
+                "started": {
+                  "example": "true"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/games/{id}": {
+      "get": {
+        "tags": [
+          "Games"
+        ],
+        "description": "Ceci est la route qui permet de récupérer une partie spécifique dans la base de données à partir de son id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Games"
+        ],
+        "description": "Ceci est la route qui permet de mettre à jour une partie spécifique dans la base de données à partir de son id",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "example": "Partie 1"
+                },
+                "description": {
+                  "example": "Cette partie est génial"
+                },
+                "number_of_round_played": {
+                  "example": "4"
+                },
+                "time_per_round_played": {
+                  "example": [2,2,4,1]
+                },
+                "created_date": {
+                  "example": "2022-12-09"
+                },
+                "chosen_map": {
+                  "example": "Split"
+                },
+                "chosen_game_mode": {
+                  "example": "FFA"
+                },
+                "is_day": {
+                  "example": "true"
+                },
+                "elapsed_time": {
+                  "example": "13"
+                },
+                "players": {
+                  "example": [
+                    {
+                      "name": "Joueur 1",
+                      "class": "Classe 1"
+                    },
+                    {
+                      "name": "Joueur 2",
+                      "class": "Classe 2"
+                    },
+                    {
+                      "name": "Joueur 3",
+                      "class": "Classe 3"
+                    },
+                    {
+                      "name": "Joueur 4",
+                      "class": "Classe 4"
+                    }]
+                },
+                "joinable": {
+                  "example": "true"
+                },
+                "started": {
+                  "example": "true"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Games"
+        ],
+        "description": "Ceci est la route qui permet de supprimer une partie spécifique dans la base de données à partir de son id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/games/map/{map}/{gamemode}": {
+      "get": {
+        "tags": [
+          "Games"
+        ],
+        "description": "Ceci est la route qui permet de récupérer toutes les parties spécifiques dans la base de données à partir de leur map et de leur gamemode",
+        "parameters": [
+          {
+            "name": "map",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "gamemode",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/games/players/{min}/{max}": {
+      "get": {
+        "tags": [
+          "Games"
+        ],
+        "description": "Ceci est la route qui permet de récupérer toutes les parties spécifiques dans la base de données à partir d'un (range) de nombre de joueurs",
+        "parameters": [
+          {
+            "name": "min",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "max",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/stats/gamemode": {
+      "get": {
+        "tags": [
+          "Stats"
+        ],
+        "description": "Ceci est la route qui permet de récupérer les statistiques de nombre de partie par modes de jeu",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/stats/map": {
+      "get": {
+        "tags": [
+          "Stats"
+        ],
+        "description": "Ceci est la route qui permet de récupérer les statistiques de nombre de partie par maps",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    }
+  }
+}
