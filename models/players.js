@@ -26,6 +26,9 @@ const PlayersSchema = new Schema({
             message: 'La classe doit contenir entre 5 et 25 caractères'
         }
     }
+},{
+    toJSON: { virtuals: true },
+    toObject: { virtuals: true }
 });
 
 PlayersSchema.set('toJSON', { virtuals: true })

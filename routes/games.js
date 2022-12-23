@@ -110,7 +110,7 @@ router.put('/:id', async(req, res) => {
   try {
     let updatedGame = req.body;
     delete updatedGame._id;
-    const game = await Game.findByIdAndUpdate(id, { $set: updatedGame});
+    const game = await Game.findByIdAndUpdate(req.params.id, { $set: updatedGame });
     res.json(game);
   } catch (err) {
     res.status(400).json({ message: err.message });
